@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/mw-utils.vim"]
 	path = .vim/bundle/mw-utils.vim
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule ".vim/bundle/sensible.vim"]
+	path = .vim/bundle/sensible.vim
+	url = https://github.com/tpope/vim-sensible.git
