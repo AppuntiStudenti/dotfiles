@@ -1,0 +1,18 @@
+snippet adause
+	with $1;
+	use ${1:};
+snippet adaproc
+	procedure ${1:} is
+		${2}
+	begin
+	end $1;
+snippet adatask
+	task ${1:} is
+		${2}
+	end $1;
+snippet adatasktype1
+	task type ${1} is (${2});
+snippet adatasktype2
+	task type ${1:} is
+		entry ${2};
+	end $1;

@@ -1,0 +1,63 @@
+snippet somtemplate
+	#include <pthread.h>
+	#include <semaphore.h>
+	#include <stddef.h>
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <unistd.h>
+
+	#define ${1:} ${2:}
+
+	typedef struct {
+		pthread_mutex_t lock;
+	} $3;
+
+	${3:} ${4:};
+
+	void init_$4 ($3* ${5:})
+	{
+		pthread_mutex_init(&$5->lock, NULL);
+	}
+
+	void* $6 (void *arg)
+	{
+		$7
+	}
+
+	int main ()
+	{
+		int i, ret_code;
+		void* status;
+		pthread_t thread[$1];
+		init_$4(&$4);
+
+		for (i = 0; i < $1; ++i) {
+			ret_code = pthread_create(&thread[i], NULL, ${6:}, (void *) (intptr_t) i);
+
+			if (ret_code) {
+				printf("ERRORE: %d\n", ret_code);
+				exit(EXIT_FAILURE);
+			}
+		}
+
+		for (i = 0; i < $1; ++i) {
+			ret_code = pthread_join(thread[i], &status);
+
+			if (ret_code) {
+				printf("ERRORE join thread %d codice %d\n", i, ret_code);
+			}
+		}
+
+		return EXIT_SUCCESS;
+	}
+snippet somthread
+	void* ${1} (void *arg)
+	{
+		${2}
+	}
+snippet somcs
+	pthread_mutex_lock(&${1:}.lock);
+	{
+		${2}
+	}
+	pthread_mutex_unlock(&$1.lock);
