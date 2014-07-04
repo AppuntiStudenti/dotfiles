@@ -10,7 +10,6 @@ snippet somtemplate
 	#define ${1:} ${2:}
 
 	typedef struct {
-		pthread_mutex_t lock;
 	} $3;
 
 	${3:} ${4:};
@@ -51,6 +50,8 @@ snippet somtemplate
 
 		return EXIT_SUCCESS;
 	}
+snippet somlock
+	pthread_mutex_t lock;
 snippet somthread
 	void* ${1} (void *arg)
 	{
