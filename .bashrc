@@ -22,6 +22,13 @@ function parse_git_dirty {
 }
 
 alias ls='ls --color'
+alias la='ls -la'
+
+alias grep='grep --color'
+
+if [ "`which hub`" != '' ]; then
+    alias git=hub
+fi
 
 EDITOR=vim
 for PATTERN in .cvs .git .hg .svn .work; do
