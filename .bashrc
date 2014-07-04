@@ -21,6 +21,8 @@ function parse_git_dirty {
     [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
 
+alias ls='ls --color'
+
 EDITOR=vim
 for PATTERN in .cvs .git .hg .svn .work; do
     GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
