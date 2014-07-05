@@ -14,15 +14,9 @@ snippet somtemplate
 
 	${3:} ${4:};
 
-	void init_$4 ($3* ${5:})
-	{
-		pthread_mutex_init(&$5->lock, NULL);
-	}
+	void init_$4 ($3* ${5:});
 
-	void* $6 (void *arg)
-	{
-		$7
-	}
+	void* ${6:} (void *arg);
 
 	int main ()
 	{
@@ -32,7 +26,7 @@ snippet somtemplate
 		init_$4(&$4);
 
 		for (i = 0; i < $1; ++i) {
-			ret_code = pthread_create(&thread[i], NULL, ${6:}, (void *) (intptr_t) i);
+			ret_code = pthread_create(&thread[i], NULL, $6, (void *) (intptr_t) i);
 
 			if (ret_code) {
 				printf("ERRORE: %d\n", ret_code);
@@ -49,6 +43,14 @@ snippet somtemplate
 		}
 
 		return EXIT_SUCCESS;
+	}
+
+	void init_$4 ($3* $5)
+	{
+	}
+
+	void* $6 (void *arg);
+	{
 	}
 snippet somlock
 	pthread_mutex_t lock;
