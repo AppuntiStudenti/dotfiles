@@ -14,7 +14,7 @@ snippet somtemplate
 
 	${3:} ${4:};
 
-	void init_$4 ($3* ${5:});
+	void init_$3 ($3* ${5:});
 
 	void* ${6:} (void *arg);
 
@@ -23,7 +23,7 @@ snippet somtemplate
 		int i, ret_code;
 		void* status;
 		pthread_t thread[$1];
-		init_$4(&$4);
+		init_$3(&$4);
 
 		for (i = 0; i < $1; ++i) {
 			ret_code = pthread_create(&thread[i], NULL, $6, (void *) (intptr_t) i);
@@ -45,7 +45,7 @@ snippet somtemplate
 		return EXIT_SUCCESS;
 	}
 
-	void init_$4 ($3* $5)
+	void init_$3 ($3* $5)
 	{
 	}
 
