@@ -28,7 +28,12 @@ snippet somtemplmonitor
 		init_$3(&$4);
 
 		for (i = 0; i < $1; ++i) {
-			ret_code = pthread_create(&thread[i], NULL, $6, (void *) (intptr_t) i);
+			ret_code = pthread_create(
+				&thread[i],
+				NULL,
+				$6,
+				(void *) (intptr_t) i
+			);
 
 			if (ret_code) {
 				printf("ERRORE: %d\n", ret_code);
@@ -87,7 +92,12 @@ snippet somtemplbarriera
 		init_$3(&$4);
 
 		for (i = 0; i < $1; ++i) {
-			ret_code = pthread_create(&thread[i], NULL, $6, (void *) (intptr_t) i);
+			ret_code = pthread_create(
+				&thread[i],
+				NULL,
+				$6,
+				(void *) (intptr_t) i
+			);
 
 			if (ret_code) {
 				printf("ERRORE: %d\n", ret_code);
