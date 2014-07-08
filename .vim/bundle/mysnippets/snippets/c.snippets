@@ -1,4 +1,4 @@
-snippet somtemplate
+snippet somtemplmonitor
 	#include <limits.h>
 	#include <pthread.h>
 	#include <semaphore.h>
@@ -13,6 +13,8 @@ snippet somtemplate
 	} $3;
 
 	${3:} ${4:};
+
+	barriera bar;
 
 	void init_$3 ($3* ${5:});
 
@@ -51,6 +53,66 @@ snippet somtemplate
 
 	void* $6 (void *arg)
 	{
+	}
+snippet somtemplbarriera
+	#include <limits.h>
+	#include <pthread.h>
+	#include <semaphore.h>
+	#include <stddef.h>
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <unistd.h>
+
+	#include "barriera.h"
+
+	#define ${1:} ${2:}
+
+	typedef struct {
+	} $3;
+
+	${3:} ${4:};
+
+	barriera bar;
+
+	void init_$3 ($3* ${5:});
+
+	void* ${6:} (void *arg);
+
+	int main ()
+	{
+		int i, ret_code;
+		void* status;
+		pthread_t thread[$1];
+		init_barriera(&bar, $1);
+		init_$3(&$4);
+
+		for (i = 0; i < $1; ++i) {
+			ret_code = pthread_create(&thread[i], NULL, $6, (void *) (intptr_t) i);
+
+			if (ret_code) {
+				printf("ERRORE: %d\n", ret_code);
+				exit(EXIT_FAILURE);
+			}
+		}
+
+		for (i = 0; i < $1; ++i) {
+			ret_code = pthread_join(thread[i], &status);
+
+			if (ret_code) {
+				printf("ERRORE join thread %d codice %d\n", i, ret_code);
+			}
+		}
+
+		return EXIT_SUCCESS;
+	}
+
+	void init_$3 ($3* $5)
+	{
+	}
+
+	void* $6 (void *arg)
+	{
+		sync_barriera(&bar);
 	}
 snippet somlock
 	pthread_mutex_t lock;
