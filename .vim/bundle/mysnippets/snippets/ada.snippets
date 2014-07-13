@@ -1,11 +1,6 @@
 snippet adause
 	with $1;
 	use ${1:};
-snippet adaproc
-	procedure ${1:} is
-		${2}
-	begin
-	end $1;
 snippet adatask
 	task ${1:} is
 		${2}
@@ -15,4 +10,34 @@ snippet adatasktype1
 snippet adatasktype2
 	task type ${1:} is
 		entry ${2};
+	end $1;
+snippet adatemplate
+	with Ada.Text_IO, Ada.Integer_Text_IO;
+	use Ada.Text_IO, Ada.Integer_Text_IO;
+
+	procedure ${1:`Filename()`} is
+		type ${2:}_ID is range 1..${3};
+
+		task type server is
+		end server;
+
+		S: server;
+
+		task type $2 (ID: $2_ID);
+
+		task body $2 is
+		begin
+			null;
+		end;
+
+		task body server is
+		begin
+			loop
+				null;
+			end loop;
+		end;
+	begin
+		for I in $2_ID'Range loop
+			null;
+		end loop;
 	end $1;
