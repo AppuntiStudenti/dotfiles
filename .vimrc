@@ -22,3 +22,5 @@ autocmd BufWrite * if ! &bin | :call setline(1,map(getline(1,"$"),'substitute(v:
 " Shows trailing spaces and tabs
 set list listchars=tab:»·,trail:·
 set showbreak=↪
+
+colorscheme darkblue
