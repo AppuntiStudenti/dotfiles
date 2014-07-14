@@ -17,6 +17,7 @@ snippet adatemplate
 
 	procedure ${1:`Filename()`} is
 		type ${2:}_ID is range 1..${3};
+		type ${4:} is access $2;
 
 		task type server is
 		end server;
@@ -38,6 +39,6 @@ snippet adatemplate
 		end;
 	begin
 		for I in $2_ID'Range loop
-			null;
+			$4 := new $3(I);
 		end loop;
 	end $1;
