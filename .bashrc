@@ -30,6 +30,11 @@ if [ "`which hub`" != '' ]; then
     alias git=hub
 fi
 
+swapescape="$HOME/bin/swapescape"
+if [[ -x "$swapescape" ]]; then
+    `$swapescape`
+fi
+
 EDITOR=vim
 for PATTERN in .cvs .git .hg .svn .work; do
     GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
