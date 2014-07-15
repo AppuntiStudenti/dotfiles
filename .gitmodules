@@ -19,3 +19,6 @@
 [submodule ".vim/bundle/airline.vim"]
 	path = .vim/bundle/airline.vim
 	url = https://github.com/bling/vim-airline
+[submodule ".vim/bundle/vim-vinegar.vim"]
+	path = .vim/bundle/vim-vinegar.vim
+	url = https://github.com/tpope/vim-vinegar.git
